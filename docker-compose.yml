@@ -1,0 +1,64 @@
+version: '3.8'
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: mini_crm_app
+    restart: unless-stopped
+    working_dir: /var/www
+    volumes:
+      - ./:/var/www
+      - ./docker/php/local.ini:/usr/local/etc/php/conf.d/local.ini
+    networks:
+      - mini_crm_network
+    depends_on:
+      - db
+      - redis
+
+  nginx:
+    image: nginx:alpine
+    container_name: mini_crm_nginx
+    restart: unless-stopped
+    ports:
+      - "8000:80"
+    volumes:
+      - ./:/var/www
+      - ./docker/nginx/conf.d:/etc/nginx/conf.d
+    networks:
+      - mini_crm_network
+    depends_on:
+      - app
+
+  db:
+    image: postgres:15-alpine
+    container_name: mini_crm_db
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: mini_crm
+      POSTGRES_USER: mini_crm_user
+      POSTGRES_PASSWORD: secret
+    ports:
+      - "5432:5432"
+    volumes:
+      - dbdata:/var/lib/postgresql/data
+    networks:
+      - mini_crm_network
+
+  redis:
+    image: redis:7-alpine
+    container_name: mini_crm_redis
+    restart: unless-stopped
+    ports:
+      - "6379:6379"
+    networks:
+      - mini_crm_network
+
+networks:
+  mini_crm_network:
+    driver: bridge
+
+volumes:
+  dbdata:
+    driver: local
