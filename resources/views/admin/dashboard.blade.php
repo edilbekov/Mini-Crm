@@ -9,7 +9,7 @@
     <div class="bg-white rounded-lg shadow p-6">
         <div class="flex items-center justify-between">
             <div>
-                <p class="text-gray-500 text-sm">Jami Zayavkalar</p>
+                <p class="text-gray-500 text-sm">Всего заявок</p>
                 <h3 class="text-3xl font-bold text-gray-800 mt-2">{{ $stats['total_tickets'] }}</h3>
             </div>
             <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center">
@@ -25,7 +25,7 @@
     <div class="bg-white rounded-lg shadow p-6">
         <div class="flex items-center justify-between">
             <div>
-                <p class="text-gray-500 text-sm">Yangi Zayavkalar</p>
+                <p class="text-gray-500 text-sm">Новые заявки</p>
                 <h3 class="text-3xl font-bold text-orange-600 mt-2">{{ $stats['new_tickets'] }}</h3>
             </div>
             <div class="w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center">
@@ -34,14 +34,14 @@
                 </svg>
             </div>
         </div>
-        <p class="text-sm text-gray-600 mt-4">Jarayonda: <span class="font-semibold">{{ $stats['in_progress_tickets'] }}</span></p>
+        <p class="text-sm text-gray-600 mt-4">В процессе: <span class="font-semibold">{{ $stats['in_progress_tickets'] }}</span></p>
     </div>
 
     <!-- Total Customers -->
     <div class="bg-white rounded-lg shadow p-6">
         <div class="flex items-center justify-between">
             <div>
-                <p class="text-gray-500 text-sm">Jami Mijozlar</p>
+                <p class="text-gray-500 text-sm">Всего клиентов</p>
                 <h3 class="text-3xl font-bold text-purple-600 mt-2">{{ $stats['total_customers'] }}</h3>
             </div>
             <div class="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center">
@@ -73,19 +73,19 @@
 <!-- Recent Tickets -->
 <div class="bg-white rounded-lg shadow">
     <div class="p-6 border-b border-gray-200">
-        <h3 class="text-lg font-semibold text-gray-800">So'nggi Zayavkalar</h3>
+        <h3 class="text-lg font-semibold text-gray-800">Последние заявки</h3>
     </div>
     <div class="overflow-x-auto">
         <table class="w-full">
             <thead class="bg-gray-50">
                 <tr>
                     <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">ID</th>
-                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Mijoz</th>
-                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Mavzu</th>
-                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
-                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Manager</th>
-                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Sana</th>
-                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Amallar</th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Клиент</th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Тема</th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Статус</th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Менеджер</th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Дата</th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Действия</th>
                 </tr>
             </thead>
             <tbody class="bg-white divide-y divide-gray-200">
@@ -103,10 +103,10 @@
                                 'closed' => 'bg-gray-100 text-gray-800',
                             ];
                             $statusLabels = [
-                                'new' => 'Yangi',
-                                'in_progress' => 'Jarayonda',
-                                'resolved' => 'Hal qilindi',
-                                'closed' => 'Yopildi',
+                                'new' => 'Новая',
+                                'in_progress' => 'В процессе',
+                                'resolved' => 'Решена',
+                                'closed' => 'Закрыта',
                             ];
                         @endphp
                         <span class="px-2 py-1 text-xs font-semibold rounded-full {{ $statusColors[$ticket->status] ?? 'bg-gray-100 text-gray-800' }}">
@@ -121,14 +121,14 @@
                     </td>
                     <td class="px-6 py-4 whitespace-nowrap text-sm">
                         <a href="{{ route('admin.tickets.show', $ticket) }}" class="text-blue-600 hover:text-blue-900">
-                            Ko'rish
+                            Просмотр
                         </a>
                     </td>
                 </tr>
                 @empty
                 <tr>
                     <td colspan="7" class="px-6 py-4 text-center text-gray-500">
-                        Zayavkalar topilmadi
+                        Заявки не найдены
                     </td>
                 </tr>
                 @endforelse

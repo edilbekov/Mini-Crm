@@ -12,38 +12,38 @@
                 type="text"
                 name="search"
                 value="{{ request('search') }}"
-                placeholder="Qidirish (mavzu, mijoz nomi, email yoki telefon)..."
+                placeholder="Поиск (тема, имя клиента, email или телефон)..."
                 class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
             >
         </div>
         <div class="flex gap-2">
             <select name="status" class="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500">
-                <option value="">Barcha statuslar</option>
-                <option value="new" {{ request('status') == 'new' ? 'selected' : '' }}>Yangi</option>
-                <option value="in_progress" {{ request('status') == 'in_progress' ? 'selected' : '' }}>Jarayonda</option>
-                <option value="resolved" {{ request('status') == 'resolved' ? 'selected' : '' }}>Hal qilindi</option>
-                <option value="closed" {{ request('status') == 'closed' ? 'selected' : '' }}>Yopildi</option>
+                <option value="">Все статусы</option>
+                <option value="new" {{ request('status') == 'new' ? 'selected' : '' }}>Новая</option>
+                <option value="in_progress" {{ request('status') == 'in_progress' ? 'selected' : '' }}>В процессе</option>
+                <option value="resolved" {{ request('status') == 'resolved' ? 'selected' : '' }}>Решена</option>
+                <option value="closed" {{ request('status') == 'closed' ? 'selected' : '' }}>Закрыта</option>
             </select>
             <input
                 type="date"
                 name="date_from"
                 value="{{ request('date_from') }}"
                 class="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
-                placeholder="Dan"
+                placeholder="От"
             >
             <input
                 type="date"
                 name="date_to"
                 value="{{ request('date_to') }}"
                 class="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
-                placeholder="Gacha"
+                placeholder="До"
             >
             <button type="submit" class="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">
-                Filtrlash
+                Фильтровать
             </button>
             @if(request()->hasAny(['search', 'status', 'date_from', 'date_to']))
             <a href="{{ route('admin.tickets.index') }}" class="px-4 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300">
-                Tozalash
+                Очистить
             </a>
             @endif
         </div>
@@ -55,12 +55,12 @@
         <thead class="bg-gray-50">
             <tr>
                 <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">ID</th>
-                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Mijoz</th>
-                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Mavzu</th>
-                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Status</th>
-                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Manager</th>
-                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Sana</th>
-                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Amallar</th>
+                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Клиент</th>
+                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Тема</th>
+                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Статус</th>
+                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Менеджер</th>
+                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Дата</th>
+                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Действия</th>
             </tr>
         </thead>
         <tbody class="bg-white divide-y divide-gray-200">
@@ -96,10 +96,10 @@
                 </td>
                 <td class="px-6 py-4 whitespace-nowrap text-sm space-x-2">
                     <a href="{{ route('admin.tickets.show', $ticket) }}" class="text-blue-600 hover:text-blue-900">
-                        Ko'rish
+                        Просмотр
                     </a>
                     <a href="{{ route('admin.tickets.edit', $ticket) }}" class="text-green-600 hover:text-green-900">
-                        Tahrirlash
+                        Редактировать
                     </a>
                 </td>
             </tr>
@@ -109,7 +109,7 @@
                     <svg class="mx-auto h-12 w-12 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
                     </svg>
-                    <p class="mt-2">Заявки topilmadi</p>
+                    <p class="mt-2">Заявки не найдены</p>
                 </td>
             </tr>
             @endforelse
