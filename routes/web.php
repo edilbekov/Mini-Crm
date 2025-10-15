@@ -21,5 +21,9 @@ Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function () 
     // Ticket routes
     Route::resource('tickets', \App\Http\Controllers\Admin\TicketController::class)->only(['index', 'show']);
 
-    // Add more admin routes here for customers, users
+    // Customer routes
+    Route::resource('customers', \App\Http\Controllers\Admin\CustomerController::class)->only(['index', 'show']);
+
+    // User routes
+    Route::resource('users', \App\Http\Controllers\Admin\UserController::class)->only(['index', 'show']);
 });
