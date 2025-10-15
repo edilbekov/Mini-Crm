@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 
-@section('title', 'Zayavkani tahrirlash #' . $ticket->id)
-@section('header', 'Zayavkani tahrirlash #' . $ticket->id)
+@section('title', 'Редактировать заявку #' . $ticket->id)
+@section('header', 'Редактировать заявку #' . $ticket->id)
 
 @section('content')
 <div class="max-w-4xl mx-auto">
@@ -11,7 +11,7 @@
             <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/>
             </svg>
-            Orqaga
+            Назад
         </a>
     </div>
 
@@ -30,7 +30,7 @@
             <!-- Subject -->
             <div class="md:col-span-2">
                 <label for="subject" class="block text-sm font-medium text-gray-700 mb-2">
-                    Mavzu *
+                    Тема *
                 </label>
                 <input
                     type="text"
@@ -49,7 +49,7 @@
             <!-- Status -->
             <div>
                 <label for="status" class="block text-sm font-medium text-gray-700 mb-2">
-                    Status *
+                    Статус *
                 </label>
                 <select
                     id="status"
@@ -57,10 +57,10 @@
                     required
                     class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 @error('status') border-red-500 @enderror"
                 >
-                    <option value="new" {{ old('status', $ticket->status) == 'new' ? 'selected' : '' }}>Yangi</option>
-                    <option value="in_progress" {{ old('status', $ticket->status) == 'in_progress' ? 'selected' : '' }}>Jarayonda</option>
-                    <option value="resolved" {{ old('status', $ticket->status) == 'resolved' ? 'selected' : '' }}>Hal qilindi</option>
-                    <option value="closed" {{ old('status', $ticket->status) == 'closed' ? 'selected' : '' }}>Yopildi</option>
+                    <option value="new" {{ old('status', $ticket->status) == 'new' ? 'selected' : '' }}>Новый</option>
+                    <option value="in_progress" {{ old('status', $ticket->status) == 'in_progress' ? 'selected' : '' }}>В процессе</option>
+                    <option value="resolved" {{ old('status', $ticket->status) == 'resolved' ? 'selected' : '' }}>Решено</option>
+                    <option value="closed" {{ old('status', $ticket->status) == 'closed' ? 'selected' : '' }}>Закрыто</option>
                 </select>
                 @error('status')
                     <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
@@ -70,7 +70,7 @@
             <!-- Manager -->
             <div>
                 <label for="manager_id" class="block text-sm font-medium text-gray-700 mb-2">
-                    Manager
+                    Менеджер
                 </label>
                 <select
                     id="manager_id"
@@ -110,16 +110,16 @@
 
         <!-- Customer Info (Read-only) -->
         <div class="mt-6 p-4 bg-gray-50 rounded-lg">
-            <h3 class="text-sm font-medium text-gray-700 mb-3">Mijoz ma'lumotlari</h3>
+            <h3 class="text-sm font-medium text-gray-700 mb-3">Данные клиента</h3>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
                 <div>
-                    <span class="font-medium">Ism:</span> {{ $ticket->customer->name }}
+                    <span class="font-medium">Имя:</span> {{ $ticket->customer->name }}
                 </div>
                 <div>
-                    <span class="font-medium">Telefon:</span> {{ $ticket->customer->phone }}
+                    <span class="font-medium">Телефон:</span> {{ $ticket->customer->phone }}
                 </div>
                 <div>
-                    <span class="font-medium">Email:</span> {{ $ticket->customer->email ?: 'Kiritilmagan' }}
+                    <span class="font-medium">Электронная почта:</span> {{ $ticket->customer->email ?: 'Kiritilmagan' }}
                 </div>
             </div>
         </div>
@@ -127,10 +127,10 @@
         <!-- Actions -->
         <div class="mt-6 flex justify-end space-x-3">
             <a href="{{ route('admin.tickets.show', $ticket) }}" class="px-4 py-2 bg-gray-300 text-gray-700 rounded-md hover:bg-gray-400">
-                Bekor qilish
+                Отменить
             </a>
             <button type="submit" class="px-6 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700">
-                Saqlash
+                Сохранить
             </button>
         </div>
     </form>

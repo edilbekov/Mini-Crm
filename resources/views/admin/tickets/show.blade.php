@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 
-@section('title', 'Zayavka #' . $ticket->id)
-@section('header', 'Zayavka #' . $ticket->id)
+@section('title', 'Заявка #' . $ticket->id)
+@section('header', 'Заявка #' . $ticket->id)
 
 @section('content')
 <div class="max-w-5xl mx-auto">
@@ -11,7 +11,7 @@
             <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/>
             </svg>
-            Orqaga
+            Назад
         </a>
     </div>
 
@@ -25,7 +25,7 @@
                         <div>
                             <h2 class="text-2xl font-bold text-gray-900">{{ $ticket->subject }}</h2>
                             <p class="text-sm text-gray-500 mt-1">
-                                Yaratildi: {{ $ticket->created_at->format('d.m.Y H:i') }}
+                                Создано успешно: {{ $ticket->created_at->format('d.m.Y H:i') }}
                             </p>
                         </div>
                         @php
@@ -36,10 +36,10 @@
                                 'closed' => 'bg-gray-100 text-gray-800',
                             ];
                             $statusLabels = [
-                                'new' => 'Yangi',
-                                'in_progress' => 'Jarayonda',
-                                'resolved' => 'Hal qilindi',
-                                'closed' => 'Yopildi',
+                                'new' => 'Новый',
+                                'in_progress' => 'В процессе',
+                                'resolved' => 'Решено',
+                                'closed' => 'Закрыто',
                             ];
                         @endphp
                         <span class="px-3 py-1 text-sm font-semibold rounded-full {{ $statusColors[$ticket->status] }}">
@@ -56,7 +56,7 @@
                             <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/>
                             </svg>
-                            Tahrirlash
+                            Редактировать
                         </a>
                     </div>
                 </div>
@@ -68,20 +68,20 @@
             <!-- Customer Info -->
             <div class="bg-white rounded-lg shadow">
                 <div class="p-6 border-b border-gray-200">
-                    <h3 class="text-lg font-semibold text-gray-800">Mijoz Ma'lumotlari</h3>
+                    <h3 class="text-lg font-semibold text-gray-800">Данные клиента</h3>
                 </div>
                 <div class="p-6 space-y-4">
                     <div>
-                        <p class="text-sm font-medium text-gray-700">Ism:</p>
+                        <p class="text-sm font-medium text-gray-700">Имя:</p>
                         <p class="text-gray-900">{{ $ticket->customer->name }}</p>
                     </div>
                     <div>
-                        <p class="text-sm font-medium text-gray-700">Telefon:</p>
+                        <p class="text-sm font-medium text-gray-700">Телефон:</p>
                         <p class="text-gray-900">{{ $ticket->customer->phone }}</p>
                     </div>
                     @if($ticket->customer->email)
                     <div>
-                        <p class="text-sm font-medium text-gray-700">Email:</p>
+                        <p class="text-sm font-medium text-gray-700">Электронная почта:</p>
                         <p class="text-gray-900">{{ $ticket->customer->email }}</p>
                     </div>
                     @endif
@@ -92,15 +92,15 @@
             @if($ticket->manager)
             <div class="bg-white rounded-lg shadow">
                 <div class="p-6 border-b border-gray-200">
-                    <h3 class="text-lg font-semibold text-gray-800">Mas'ul Manager</h3>
+                    <h3 class="text-lg font-semibold text-gray-800">Ответственный менеджер</h3>
                 </div>
                 <div class="p-6 space-y-4">
                     <div>
-                        <p class="text-sm font-medium text-gray-700">Ism:</p>
+                        <p class="text-sm font-medium text-gray-700">Имя:</p>
                         <p class="text-gray-900">{{ $ticket->manager->name }}</p>
                     </div>
                     <div>
-                        <p class="text-sm font-medium text-gray-700">Email:</p>
+                        <p class="text-sm font-medium text-gray-700">Электронная почта:</p>
                         <p class="text-gray-900">{{ $ticket->manager->email }}</p>
                     </div>
                 </div>

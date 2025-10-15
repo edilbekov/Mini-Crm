@@ -23,14 +23,4 @@ class StoreTicketRequest extends FormRequest
             'status' => ['sometimes', Rule::in(Ticket::getStatuses())],
         ];
     }
-
-    public function messages(): array
-    {
-        return [
-            'customer_id.required' => 'Mijoz tanlanishi shart',
-            'customer_id.exists' => 'Tanlangan mijoz topilmadi',
-            'subject.required' => 'Mavzu kiritish majburiy',
-            'description.required' => 'Ta\'rif kiritish majburiy',
-        ];
-    }
 }

@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 
-@section('title', 'Dashboard - Mini CRM')
-@section('header', 'Dashboard')
+@section('title', 'Панель управления - Mini CRM')
+@section('header', 'Панель управления')
 
 @section('content')
 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-6">
@@ -18,7 +18,7 @@
                 </svg>
             </div>
         </div>
-        <p class="text-sm text-gray-600 mt-4">Bugun: <span class="font-semibold">{{ $stats['today_tickets'] }}</span></p>
+        <p class="text-sm text-gray-600 mt-4">Сегодня: <span class="font-semibold">{{ $stats['today_tickets'] }}</span></p>
     </div>
 
     <!-- New Tickets -->
@@ -50,14 +50,14 @@
                 </svg>
             </div>
         </div>
-        <p class="text-sm text-gray-600 mt-4">Faol: <span class="font-semibold">{{ $stats['active_customers'] }}</span></p>
+        <p class="text-sm text-gray-600 mt-4">Активный: <span class="font-semibold">{{ $stats['active_customers'] }}</span></p>
     </div>
 
     <!-- Resolved Tickets -->
     <div class="bg-white rounded-lg shadow p-6">
         <div class="flex items-center justify-between">
             <div>
-                <p class="text-gray-500 text-sm">Hal qilingan</p>
+                <p class="text-gray-500 text-sm">Решенный</p>
                 <h3 class="text-3xl font-bold text-green-600 mt-2">{{ $stats['resolved_tickets'] }}</h3>
             </div>
             <div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center">
@@ -66,7 +66,7 @@
                 </svg>
             </div>
         </div>
-        <p class="text-sm text-gray-600 mt-4">Bu oy: <span class="font-semibold">{{ $stats['month_resolved'] }}</span></p>
+        <p class="text-sm text-gray-600 mt-4">В этом месяце: <span class="font-semibold">{{ $stats['month_resolved'] }}</span></p>
     </div>
 </div>
 
