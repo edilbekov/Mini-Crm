@@ -18,5 +18,8 @@ Route::get('/', function () {
 Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
-    // Add more admin routes here for tickets, customers, users
+    // Ticket routes
+    Route::resource('tickets', \App\Http\Controllers\Admin\TicketController::class)->only(['index', 'show']);
+
+    // Add more admin routes here for customers, users
 });
